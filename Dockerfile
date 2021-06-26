@@ -8,4 +8,4 @@ RUN pip install --no-cache-dir transmission_rpc
 
 COPY app/node.py ./
 
-CMD [ "python", "./node.py" ]
+CMD [ "python","-u", "./node.py" ]
