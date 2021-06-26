@@ -11,7 +11,7 @@ jobs:
     steps:
       - 
         name: identify
-        run: echo ${{ env.FUSIONAUTH_VERSION }}
+        run: echo ${{ env.APP_VERSION }}
       -
         name: Checkout
         uses: actions/checkout@v2
