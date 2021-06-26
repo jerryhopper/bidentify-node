@@ -3,6 +3,8 @@ FROM python:3.7-slim-buster
 WORKDIR /usr/src/app
 
 COPY app/requirements.txt ./
+RUN ls -latr
+RUN ECHO $PWD
 RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
 
 COPY app/node.py ./
