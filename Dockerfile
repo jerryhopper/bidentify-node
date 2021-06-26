@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY app/requirements.txt ./
 RUN ls -latr
-RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
+RUN pip install --no-cache-dir transmission_rpc
 
 COPY app/node.py ./
 
