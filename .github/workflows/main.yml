@@ -1,8 +1,8 @@
 name: ci
-#on: [push]
-on:
-  release:
-    types: [created]
+on: [push]
+#on:
+#  release:
+#    types: [created]
 jobs:
   multi:
     runs-on: ubuntu-latest
