@@ -58,7 +58,7 @@ while True:
         sys.stdout.write(':)\n')
         instance = Node()
         instance.start()
-        time.sleep(5)
+        time.sleep(60)
     except:
        #print("Fatal error!")
        sys.stderr.write('Fatal error!\n')
