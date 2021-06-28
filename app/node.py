@@ -2,7 +2,8 @@ import os,sys,time
 
 from src.config import BIdentifyConfig
 from src.checktorrents import BIdentifyTorrents
-
+from src.CheckForUploads import CheckForUploads
+from src.updates import Update
 
 
 class Node:
@@ -23,14 +24,15 @@ class Node:
                 self.checkForRootservers()
             except:
                 a=1
-            try:
-                self.checkAllTorrents()
-            except:
-                a=1
-            try:
-                self.checkForUpload()
-            except:
-                a=1
+            #try:
+            self.checkForUpload()
+            #except:
+            #    a=1
+            #try:
+            self.checkAllTorrents()
+            #    #except:
+            #    #    a=1
+
             time.sleep(2)
 
     def current_time(self):
@@ -39,7 +41,8 @@ class Node:
     def checkForUpload(self):
         if self.uploadStamp < (self.current_time() - 30):
             sys.stdout.write('checkForUpload\n')
-
+            checkUploads = CheckForUploads(self.config.getServer())
+            checkUploads.start()
             self.uploadStamp = self.current_time()
 
     def checkForRootservers(self):
@@ -50,10 +53,12 @@ class Node:
             self.rootserverStamp=self.current_time()
 
     def checkAllTorrents(self):
-        if self.alltorrentsStamp < (self.current_time() - 3600):
-            sys.stdout.write(str(self.alltorrentsStamp)+' checkAllTorrents\n')
+        if self.alltorrentsStamp < (self.current_time() - (3600*48)):
+            sys.stdout.write(str(self.alltorrentsStamp)+' checkAllTorrents------------------\n')
             checktorrent = BIdentifyTorrents( self.config.getServer() )
             self.alltorrentsStamp=self.current_time()
+            print("Done!")
+            #sys.exit()
 
 
 
@@ -64,7 +69,7 @@ while True:
         #sys.stderr.write(':)\n')
         sys.stdout.write(':)\n')
 
-        #instance.start()
+        instance.start()
         time.sleep(60)
     except Exception as inst:
        print(type(inst))
