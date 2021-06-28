@@ -2,28 +2,32 @@ version: "2.1"
 services:
   bidentifynode:
     image: jerryhopper/bidentify-node
+    restart: unless-stopped
     environment:
       - TESTVAR=1
     volumes:
       - /mnt/dietpi_userdata/bidentify-data/downloads:/downloads
+      - /mnt/dietpi_userdata/bidentify-data/torrents:/torrents
       - ./app:/usr/src/app
-  #transmission:
-  #  image: linuxserver/transmission
-  #  container_name: transmission
-  #  environment:
-  #    - PUID=0
-  #    - PGID=0
-  #    - TZ=Europe/Amsterdam
+  transmission:
+    image: linuxserver/transmission
+    container_name: transmission
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Europe/Amsterdam
   #    #- TRANSMISSION_WEB_HOME=/combustion-release/ #optional
-  #    #- USER=username #optional
-  #    #- PASS=password #optional
-  #    - WHITELIST=*.*.*.*
+      - USER=username #optional
+      - PASS=password #optional
+      - WHITELIST=*.*.*.*
   #    #- HOST_WHITELIST=dnsnane list #optional
-  #  volumes:
-  #    - ./config:/config
-  #    - /mnt/dietpi_userdata/bidentify-data/downloads:/downloads
-  #  ports:
-  #    - 9091:9091
-  #    - 51413:51413
-  #    - 51413:51413/udp
-  #  restart: unless-stopped
+    volumes:
+      - ./config:/config
+      - /mnt/dietpi_userdata/bidentify-data/downloads:/downloads
+      - /mnt/dietpi_userdata/bidentify-data/torrents:/torrents
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+    restart: unless-stopped
+
