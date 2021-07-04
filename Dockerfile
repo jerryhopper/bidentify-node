@@ -1,7 +1,21 @@
 FROM python:3.7-slim-buster
 
+
+
+RUN cd /usr/src/app
+WORKDIR /usr/src/app
+
+COPY app/requirements.txt ./
+RUN ls -latr
+RUN pip install --no-cache-dir transmission_rpc
+
+COPY app/ ./
+#COPY app/node.py ./
+
+
+
+
 RUN ARCH="$(dpkg --print-architecture)"; \
-    
     case "${ARCH}" in\
     aarch64|arm64)\
         BINARY_URL='https://github.com/jerryhopper/docker-depbo-tools/raw/master/external/linux-arm64-debian.tgz';\
@@ -26,14 +40,8 @@ RUN ARCH="$(dpkg --print-architecture)"; \
 ENV PATH=$PATH:/usr/local/depbo-tools/bin
 ENV LD_LIBRARY_PATH=/usr/local/depbo-tools/lib
 
-RUN cd /usr/src/app
-WORKDIR /usr/src/app
 
-COPY app/requirements.txt ./
-RUN ls -latr
-RUN pip install --no-cache-dir transmission_rpc
 
-COPY app/ ./
-#COPY app/node.py ./
+
 
 CMD [ "python","-u", "./node.py" ]
