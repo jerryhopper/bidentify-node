@@ -4,7 +4,7 @@ RUN ARCH="$(dpkg --print-architecture)"; \
     
     case "${ARCH}" in\
     aarch64|arm64)\
-        BINARY_URL='https://github.com/jerryhopper/docker-depbo-tools/raw/master/external/linux-arm64-focal.tgz';\
+        BINARY_URL='https://github.com/jerryhopper/docker-depbo-tools/raw/master/external/linux-arm64-debian.tgz';\
         ;;\
     amd64|x86_64)\
         BINARY_URL='https://github.com/jerryhopper/docker-depbo-tools/raw/master/external/linux-amd64.tgz';\
@@ -22,7 +22,10 @@ RUN ARCH="$(dpkg --print-architecture)"; \
     && ls -latr \
     && cp -r /tmp/depbo-tools /usr/local/depbo-tools  \
     && rm -rf /tmp
-    
+
+ENV PATH=$PATH:/usr/local/depbo-tools/bin
+ENV LD_LIBRARY_PATH=/usr/local/depbo-tools/lib
+
 RUN cd /usr/src/app
 WORKDIR /usr/src/app
 
