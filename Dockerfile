@@ -2,7 +2,7 @@ FROM python:3.7-slim-buster
 
 
 
-RUN cd /usr/src/app
+
 WORKDIR /usr/src/app
 
 COPY app/requirements.txt ./
