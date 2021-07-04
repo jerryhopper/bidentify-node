@@ -44,7 +44,7 @@ ENV LD_LIBRARY_PATH=/usr/local/depbo-tools/lib
 
 
 #RUN curl -LfsSo /tmp/bogus.pbo https://github.com/jerryhopper/docker-depbo-tools/raw/master/external/bogus.pbo
-RUN extractpbo --help
+#RUN extractpbo --help
 
 
 CMD [ "python","-u", "./node.py" ]
