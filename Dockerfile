@@ -17,6 +17,9 @@ COPY app/ ./
 
 RUN apt update && apt -y install curl 
 
+
+RUN apt update && apt install -y curl liblzo2-2 libvorbis0a libvorbisfile3 libvorbisenc2 libogg0 libuchardet0 
+
 RUN ARCH="$(dpkg --print-architecture)"; \
     case "${ARCH}" in\
     aarch64|arm64)\
@@ -30,8 +33,6 @@ RUN ARCH="$(dpkg --print-architecture)"; \
         exit 1;\
         ;;\
     esac \
-    && apt update \
-    && apt install -y curl liblzo2-2 libvorbis0a libvorbisfile3 libvorbisenc2 libogg0 libuchardet0 \
     && curl -LfsSo /tmp/depbo-tools.tgz ${BINARY_URL} \
     && cd /tmp \
     && tar -zxvf depbo-tools.tgz  \
