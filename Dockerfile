@@ -15,6 +15,8 @@ COPY app/ ./
 
 
 
+RUN apt update && apt -y install curl 
+
 RUN ARCH="$(dpkg --print-architecture)"; \
     case "${ARCH}" in\
     aarch64|arm64)\
