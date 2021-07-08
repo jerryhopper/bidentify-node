@@ -78,5 +78,6 @@ while True:
        #print("Fatal error!")
        sys.stderr.write('Fatal error!\n')
        #time.sleep(3600/4)
-       #pass
-       exit()
+       time.sleep(5)
+       pass
+       #exit()

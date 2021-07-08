@@ -76,7 +76,7 @@ class CheckForUploads:
         except :
             print("FATAL! .... .. .")
             print(sys.exc_info())
-            sys.exit()
+            #sys.exit()
             e = sys.exc_info()[0]
             print( e )
             time.sleep(10)
